@@ -49,5 +49,5 @@ def predict(seed_text, words_to_generate):
         
     return seed_text
 # Example
-seed = "hello my name is"
+seed = str(input("Seed text: "))
 print("Next word:", predict(seed,4))
