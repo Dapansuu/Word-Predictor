@@ -31,20 +31,20 @@ def predict(seed_text, words_to_generate):
     # Repeat the process for as many words as you want
     for _ in range(words_to_generate):
         
-        # 1. Convert the text input into numbers (tokens)
+        #* 1. text into tokens
         token_list = tokenizer.texts_to_sequences([seed_text])[0]
         
-        # 2. Make sure the input size matches what the model expects (Padding)
+        #* 2. padding
         token_list = pad_sequences([token_list], maxlen=max_sequence_len-1, padding='pre')
         
-        # 3. Ask the model for the most likely next word (The "Winner")
+        #* 3. prediction
         predicted = model.predict(token_list, verbose = 0)[0]
         winner_index = np.argmax(predicted) 
         
-        # 4. Turn that number back into a word
+        #* 4. token into word
         next_word = tokenizer.index_word.get(winner_index, "")
         
-        # 5. Add that word to our sentence and repeat
+        #* 5. sentence
         seed_text += " " + next_word
         
     return seed_text
