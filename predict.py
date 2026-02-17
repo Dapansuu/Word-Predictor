@@ -1,4 +1,3 @@
-from tabnanny import verbose
 import numpy as np
 import pickle
 from tensorflow.keras.models import load_model # type: ignore
@@ -51,3 +50,4 @@ def predict(seed_text, words_to_generate):
 # Example
 seed = str(input("Seed text: "))
 print("Next word:", predict(seed,4))
+
