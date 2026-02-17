@@ -5,12 +5,16 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences #type:ignore
 
 # Load model and tokenizer
-model = tf.keras.models.load_model("lstm_model.keras")
+model = tf.keras.models.load_model("models/lstm_model.h5")
 
-with open("tokenizer.pkl", "rb") as f:
+with open("models/tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
-MAX_SEQUENCE_LENGTH = 20
+with open("models/metadata.pkl", "rb") as f:
+    metadata = pickle.load(f)
+
+MAX_SEQUENCE_LENGTH = metadata["max_sequence_len"]
+
 
 st.title("LSTM Next Word Predictor")
 
