@@ -21,10 +21,10 @@ st.title("LSTM Next Word Predictor")
 text_input = st.text_input("Enter text:")
 
 if st.button("Predict"):
-    sequence = tokenizer.texts_to_sequences([text_input])
-    padded = pad_sequences(sequence, maxlen=MAX_SEQUENCE_LENGTH, padding='pre')
+    sequence = tokenizer.texts_to_sequences([text_input])[0]
+    padded = pad_sequences([sequence], maxlen=MAX_SEQUENCE_LENGTH-1, padding='pre')
 
-    prediction = model.predict(padded)
+    prediction = model.predict(padded)[0]
     predicted_index = np.argmax(prediction)
 
     reverse_word_index = {v: k for k, v in tokenizer.word_index.items()}
